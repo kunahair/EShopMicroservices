@@ -1,6 +1,14 @@
+using System.Text.Json;
+using Newtonsoft.Json;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
+
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
+});
 
 builder.Services.AddCarter();
 builder.Services.AddMediatR(config =>
